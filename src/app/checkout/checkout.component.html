@@ -1,0 +1,6 @@
+<h2>Checkout</h2>
+<div *ngFor="let item of cartItems">
+  <p>{{item.name}} - ${{item.price}}</p>
+</div>
+<p>Total: ${{total}}</p>
+<button (click)="placeOrder()">Place Order</button>

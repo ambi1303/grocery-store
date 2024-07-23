@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer Section</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <style>
+    /* Add these styles to your existing CSS file */
+
+    .newsletter-section {
+      background-color: #28a745; /* Update the color as needed */
+      padding: 20px 0;
+    }
+
+    .newsletter-content .grocery-image {
+      max-width: 100%; 
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .newsletter-content h2 {
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .newsletter-content p {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form .input-group {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form .form-control {
+      border-radius: 0;
+    }
+
+    .newsletter-form .btn-warning {
+      border-radius: 0;
+    }
+
+    .footer-main {
+      background-color: #f8f9fa;
+      padding: 40px 0;
+    }
+
+    .footer-main h4 {
+      margin-bottom: 20px;
+    }
+
+    .footer-main .footer-links,
+    .footer-main ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-main .footer-links li,
+    .footer-main ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-main .footer-links li a,
+    .footer-main ul li a {
+      color: #343a40;
+      text-decoration: none;
+    }
+
+    .footer-main .footer-contact ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-main .footer-contact ul li {
+      margin-bottom: 10px;
+      color: #343a40;
+    }
+
+    .footer-main .footer-contact ul li i {
+      margin-right: 10px;
+    }
+
+    .footer-bottom {
+      background-color: #343a40;
+      color: #fff;
+      padding: 10px 0;
+    }
+
+    .footer-bottom .social-icons,
+    .footer-bottom .payment-methods {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-bottom .social-icons li,
+    .footer-bottom .payment-methods li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .footer-bottom .social-icons li a,
+    .footer-bottom .payment-methods li img {
+      color: #fff;
+    }
+
+    .footer-bottom .payment-methods li img {
+      max-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <footer>
+    <div class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-content">
+          <div class="row align-items-center">
+            <div class="col-md-4 d-none d-md-block text-center">
+              <img src="assets/grocery-delivery.png" class="img-fluid grocery-image" alt="Grocery Delivery">
+            </div>
+            <div class="col-md-8 text-center text-md-left">
+              <h2>Get <span>20%</span> Off Discount Coupon</h2>
+              <p>by Subscribe our Newsletter</p>
+              <form class="newsletter-form">
+                <div class="input-group">
+                  <input type="email" class="form-control" placeholder="EMAIL ADDRESS">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-warning">Get the Coupon</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-main">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="footer-left">
+              <div class="footer-logo">
+                <img src="" alt="Eco Shop">
+              </div>
+              <ul class="footer-links">
+                <li><a href="#">Track Order</a></li>
+                <li><a href="#">Delivery & Returns</a></li>
+                <li><a href="#">Warranty</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="footer-middle">
+              <h4>About us</h4>
+              <ul>
+                <li><a href="#">Rave's Story</a></li>
+                <li><a href="#">Work With Us</a></li>
+                <li><a href="#">Corporate News</a></li>
+                <li><a href="#">Investors</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="footer-right">
+              <h4>Useful Links</h4>
+              <ul>
+                <li><a href="#">Secure Payment</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Use</a></li>
+                <li><a href="#">Archived Products</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="footer-contact">
+              <h4>Contact Info</h4>
+              <ul>
+                <li><i class="fas fa-map-marker-alt"></i> Address: 4517 Washington Ave. Manchester, Kentucky 39495</li>
+                <li><i class="fas fa-phone"></i> Phone: 4517 Washington Ave. Manchester, Kentucky 39495</li>
+                <li><i class="fas fa-envelope"></i> Email: support&#64;ecoshop.com</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p>&copy;2022 Quomodosoft All rights reserved</p>
+          </div>
+          <div class="col-md-6 text-right">
+            <ul class="social-icons">
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            </ul>
+            <ul class="payment-methods">
+              <li><img src="assets/visa.png" alt="Visa"></li>
+              <li><img src="assets/mastercard.png" alt="Mastercard"></li>
+              <li><img src="assets/paypal.png" alt="Paypal"></li>
+              <li><img src="assets/skrill.png" alt="Skrill"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

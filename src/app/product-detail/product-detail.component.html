@@ -1,0 +1,8 @@
+<app-header></app-header>
+<div *ngIf="product">
+    <h2>{{product.name}}</h2>
+    <p>Price: ${{product.price}}</p>
+    <p>{{product.description}}</p>
+    <button (click)="addToCart(product)">Add to Cart</button>
+  </div>
+<app-footer></app-footer>

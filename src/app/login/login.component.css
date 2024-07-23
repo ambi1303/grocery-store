@@ -1,0 +1,89 @@
+/* Add your existing styles here */
+
+/* Market Category Styles */
+.market-category {
+  margin-top: 40px;
+}
+
+.market-category h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.market-category .view-all {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.market-category .category-card {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.market-category .category-card:hover {
+  background-color: #e9ecef;
+}
+
+.market-category .category-card .image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.market-category .category-card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.market-category .category-card p {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Other styles */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.hero-text {
+  max-width: 50%;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.feature {
+  text-align: center;
+}
+
+.feature i {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.feature h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.feature p {
+  font-size: 14px;
+  color: #6c757d;
+}

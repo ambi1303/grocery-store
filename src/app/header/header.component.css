@@ -1,0 +1,113 @@
+header {
+    font-family: Arial, sans-serif;
+  }
+  
+  .top-bar {
+    background: #f5f5f5;
+    padding: 10px 0;
+  }
+  
+  .top-bar .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .top-left a {
+    margin-right: 15px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .top-right span {
+    margin-left: 15px;
+    color: #333;
+  }
+  
+  .main-header {
+    background: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 40px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .search-bar select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .search-bar button {
+    padding: 10px 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .icons i {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .seller-login button {
+    background: #ffc107;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .nav-bar {
+    background: #28a745;
+  }
+  
+  .nav-bar .container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .categories button {
+    background: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin-left: 20px;
+  }
+  
+  .nav-links li {
+    margin-right: 15px;
+  }
+  
+  .nav-links a {
+    color: white;
+    text-decoration: none
+  }

@@ -1,0 +1,107 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+  }
+  
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .forgot-password {
+    float: right;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  
+  .btn-primary {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6b6b;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .social-login {
+    margin-top: 20px;
+  }
+  
+  .btn-facebook,
+  .btn-google {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    margin: 0 5px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .btn-facebook {
+    background-color: #3b5998;
+  }
+  
+  .btn-google {
+    background-color: #db4437;
+  }
+  
+  .signup-link,
+  .signin-link {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  
+  .signup-link a,
+  .signin-link a {
+    color: #ff6b6b;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .checkbox {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox input {
+    margin-right: 10px;
+  }
+  
+  .checkbox label {
+    font-size: 12px;
+  }
