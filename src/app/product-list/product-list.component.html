@@ -1,10 +1,10 @@
 <app-header></app-header>
-<div class="container">
+<div class="container" (window:scroll)="onScroll()">
   <div class="hero">
     <div class="hero-text">
-      <h1 class="logo">FRESH GROCERY</h1>
+      <h1 class="logo"><b>FRESH GROCERY</b></h1>
       <h2>There's you can Buy your all of Grocery Products.</h2>
-      <button class="button">
+      <button class="button" (click)="shopNow()">
         Shop Now 
         <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
           <path clip-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" fill-rule="evenodd"></path>
@@ -12,7 +12,7 @@
       </button>
     </div>
     <div class="hero-image">
-      <img src="/assets/grocery-product1.png" alt="Grocery products">
+      <img src="/assets/grocery-product1.png" alt="Grocery products" loading="lazy">
     </div>
   </div>
 
@@ -22,41 +22,11 @@
       <a href="#" class="view-all">View All</a>
     </div>
     <div class="category-grid">
-      <div class="category-card">
+      <div class="category-card" *ngFor="let category of marketCategories">
         <div class="image-container">
-          <img src="assets/icons/fruits.jpeg" alt="Fruits">
+          <img [src]="'assets/icons/' + category.toLowerCase() + '.png'" [alt]="category" loading="lazy">
         </div>
-        <p>Fruits</p>
-      </div>
-      <div class="category-card">
-        <div class="image-container">
-          <img src="assets/icons/vegetable.jpeg" alt="Vegetable">
-        </div>
-        <p>Vegetable</p>
-      </div>
-      <div class="category-card">
-        <div class="image-container">
-          <img src="assets/icons/juice.png" alt="Juice">
-        </div>
-        <p>Juice</p>
-      </div>
-      <div class="category-card">
-        <div class="image-container">
-          <img src="assets/icons/meat.png" alt="Meat">
-        </div>
-        <p>Meat</p>
-      </div>
-      <div class="category-card">
-        <div class="image-container">
-          <img src="assets/icons/cold-drink.png" alt="Cold Drinks">
-        </div>
-        <p>Cold Drinks</p>
-      </div>
-      <div class="category-card">
-        <div class="image-container">
-          <img src="assets/icons/bread.png" alt="Breads">
-        </div>
-        <p>Breads</p>
+        <p>{{ category }}</p>
       </div>
     </div>
   </section>
@@ -84,115 +54,225 @@
     </div>
   </section>
 </div>
+
 <div class="card-container">
   <div class="card fruits">
     <h3>FRUITS</h3>
     <h2>Healthy & Goods Fruits</h2>
-    <button class="shop-now">Shop Now &gt;</button>
-    <img src="assets/fruit-card.png" alt="Assorted fruits">
+    <button class="shop-now" (click)="shopNow()">Shop Now &gt;</button>
+    <img src="assets/fruit-card.png" alt="Assorted fruits" loading="lazy">
   </div>
   
   <div class="card vegetables">
     <h3>VEGETABLE</h3>
-    <h2>Frash & Goods Vegetable</h2>
-    <button class="shop-now">Shop Now &gt;</button>
-    <img src="assets/vegetable-card.png" alt="Assorted vegetables">
+    <h2>Fresh & Goods Vegetable</h2>
+    <button class="shop-now" (click)="shopNow()">Shop Now &gt;</button>
+    <img src="assets/vegetable-card.png" alt="Assorted vegetables" loading="lazy">
   </div>
   
   <div class="card juices">
     <h3>JUICES</h3>
     <h2>Best Fruits Juices</h2>
-    <button class="shop-now">Shop Now &gt;</button>
-    <img src="assets/juice-card.png" alt="Fruit juices and fruits">
+    <button class="shop-now" (click)="shopNow()">Shop Now &gt;</button>
+    <img src="assets/juice-card.png" alt="Fruit juices and fruits" loading="lazy">
   </div>
 </div>
-<br>
+
 <div class="fresh-vegetables-container">
   <h2 class="section-title">Fresh Vegetables</h2>
   <a href="#" class="view-all">View All</a>
 
   <div class="product-grid">
-    <div class="product-card">
+    <div class="product-card" *ngFor="let product of featuredProducts">
       <div class="image-container">
-        <img src="assets/fresh-red-tomatos.png" alt="Fresh Red Tomatos">
+        <img [src]="product.imageUrl" [alt]="product.name" loading="lazy">
       </div>
       <div class="rating">★★★★★</div>
-      <h3 class="product-title">Fresh Red Tomatos</h3>
+      <h3 class="product-title">{{ product.name }}</h3>
       <div class="price">
-        <span class="original-price">$12.99</span>
-        <span class="discounted-price">$6.99</span>
+        <span class="original-price">${{ product.originalPrice.toFixed(2) }}</span>
+        <span class="discounted-price">${{ product.discountedPrice.toFixed(2) }}</span>
       </div>
-      <button class="add-to-cart">+ Add To Cart</button>
+      <button class="add-to-cart" (click)="addToCart(product)">+ Add To Cart</button>
     </div>
-
-    <div class="product-card">
-      <div class="image-container">
-        <img src="assets/chicken-eggs.png" alt="Chicken Eggs">
-      </div>
-      <div class="rating">★★★★★</div>
-      <h3 class="product-title">Chicken Eggs</h3>
-      <div class="price">
-        <span class="original-price">$10.99</span>
-        <span class="discounted-price">$5.99</span>
-      </div>
-      <button class="add-to-cart">+ Add To Cart</button>
-    </div>
-
-    <div class="product-card">
-      <div class="image-container">
-        <img src="assets/fresh-watermelon.png" alt="Fresh Watemelon">
-      </div>
-      <div class="rating">★★★★★</div>
-      <h3 class="product-title">Fresh Watemelon</h3>
-      <div class="price">
-        <span class="original-price">$15.99</span>
-        <span class="discounted-price">$8.99</span>
-      </div>
-      <button class="add-to-cart">+ Add To Cart</button>
-    </div>
-
-    <div class="product-card">
-      <div class="image-container">
-        <img src="assets/Beef-steak.png" alt="Beef Steak">
-      </div>
-      <div class="rating">★★★★★</div>
-      <h3 class="product-title">Beef Steak</h3>
-      <div class="price">
-        <span class="original-price">$20.99</span>
-        <span class="discounted-price">$12.99</span>
-      </div>
-      <button class="add-to-cart">+ Add To Cart</button>
-    </div>
-  </div>
-</div><br>
-<div class="flash-sale-container">
-  <div class="timer">
-    <div class="time-unit">
-      <span class="number">{{days}}</span>
-      <span class="label">Days</span>
-    </div>
-    <div class="time-unit">
-      <span class="number">{{hours}}</span>
-      <span class="label">Hours</span>
-    </div>
-    <div class="time-unit">
-      <span class="number">{{minutes}}</span>
-      <span class="label">Minutes</span>
-    </div>
-    <div class="time-unit">
-      <span class="number">{{seconds}}</span>
-      <span class="label">Seconds</span>
-    </div>
-  </div>
-  
-  <div class="content">
-    <h1>WOO! Flash Sale</h1>
-    <p>You get into the 2k+ best Products in br Flash offer with as in shaped sofa for sale.</p>
-    <button class="shop-now">Shop Now &gt;</button>
-  </div>
-  
-  <div class="image-container">
-    <img src="assets/flash-sale.png" alt="Couple with groceries">
   </div>
 </div>
+
+<div class="flash-sale-container">
+  <div class="content">
+    <div class="timer">
+      <div class="time-unit">
+        <span class="number">157</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="time-unit">
+        <span class="number">23</span>
+        <span class="label">Hours</span>
+      </div>
+      <div class="time-unit">
+        <span class="number">13</span>
+        <span class="label">Minutes</span>
+      </div>
+      <div class="time-unit">
+        <span class="number">13</span>
+        <span class="label">Seconds</span>
+      </div>
+    </div>
+    <h1>WOO! Flash Sale</h1>
+    <p>You get into the 2k+ best Products in br Flash offer with as in shaped sofa for sale.</p>
+    <a href="#" class="shop-now-btn">Shop Now</a>
+  </div>
+  <div class="image-container">
+    <img src="assets/flash-sale.png" alt="Flash Sale">
+  </div>
+</div>
+
+<div class="top-selling-products-container">
+  <div class="section-header">
+    <h2 class="section-title">Top Selling Products</h2>
+    <a href="#" class="view-all">View All</a>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of topSellingProducts; let i = index" [class.top-row]="i < 3">
+      <div class="product-image">
+        <img [src]="product.imageUrl" [alt]="product.name">
+      </div>
+      <div class="product-info">
+        <div class="rating">★★★★★</div>
+        <h3 class="product-title">{{ product.name }}</h3>
+        <div class="price">
+          <span class="original-price">${{ product.originalPrice.toFixed(2) }}</span>
+          <span class="discounted-price">${{ product.discountedPrice.toFixed(2) }}</span>
+        </div>
+        <button class="add-to-cart">+ Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="featured-categories-container">
+  <div class="featured-category-card featured-vegetables">
+    <div class="featured-category-content">
+      <span class="featured-category-label">FRESH VEGETABLES</span>
+      <h2 class="featured-category-title">The 14 Most Nutrient-Dense Vegetables</h2>
+      <button class="featured-shop-now">Shop Now &gt;</button>
+    </div>
+    <div class="featured-category-image">
+      <img src="assets/women with fruits.png" alt="Woman holding fresh vegetables" loading="lazy">
+    </div>
+  </div>
+  
+  <div class="featured-category-card featured-fruits">
+    <div class="featured-category-content">
+      <span class="featured-category-label">FRESH FRUITS</span>
+      <h2 class="featured-category-title">Healthy & Goods Fruits</h2>
+      <button class="featured-shop-now">Shop Now &gt;</button>
+    </div>
+    <div class="featured-category-image">
+      <img src="assets/man with fruits.png" alt="Man holding fresh fruits" loading="lazy">
+    </div>
+  </div>
+</div>
+
+<div class="drink-juice-container">
+  <div class="section-header">
+    <h2 class="section-title"><b>DRINK JUICES</b></h2>
+    <a href="#" class="view-all">View All</a>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let product of drinkjuices; let i = index" [class.top-row]="i < 3">
+      <div class="product-image">
+        <img [src]="product.imageUrl" [alt]="product.name">
+      </div>
+      <div class="product-info">
+        <div class="rating">★★★★★</div>
+        <h3 class="product-title">{{ product.name }}</h3>
+        <div class="price">
+          <span class="original-price">${{ product.originalPrice.toFixed(2) }}</span>
+          <span class="discounted-price">${{ product.discountedPrice.toFixed(2) }}</span>
+        </div>
+        <button class="add-to-cart">+ Add To Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Best Deals -->
+<div class="flash-sale-banner">
+  <div class="flash-sale-image-left">
+      <img src="assets/best-deal/vegetable.png" alt="Vegetables" loading="lazy">
+  </div>
+  <div class="flash-sale-content">
+      <h1 class="flash-sale-title">Get the best deal for Grocery</h1>
+      <p class="flash-sale-description">You get into the 2k+ best Products in Flash offer with as into the find to makein shaped sofa for sale.</p>
+      <button class="flash-sale-button">Shop Now &gt;</button>
+  </div>
+  <div class="flash-sale-image-right">
+      <img src="assets/best-deal/fruits.png" alt="Fruits" loading="lazy">
+  </div>
+</div><br>
+
+<!--New Arrivals-->
+<div class="top-selling-products-container">
+  <div class="section-header">
+    <h2 class="section-title"><b>New Arrivals</b></h2>
+    <a href="#" class="view-all">View All</a>
+  </div>
+<div class="product-grid">
+  <div class="product-card" *ngFor="let product of topSellingProducts; let i = index" [class.top-row]="i < 3">
+    <div class="product-image">
+      <img [src]="product.imageUrl" [alt]="product.name">
+    </div>
+    <div class="product-info">
+      <div class="rating">★★★★★</div>
+      <h3 class="product-title">{{ product.name }}</h3>
+      <div class="price">
+        <span class="original-price">${{ product.originalPrice.toFixed(2) }}</span>
+        <span class="discounted-price">${{ product.discountedPrice.toFixed(2) }}</span>
+      </div>
+      <button class="add-to-cart">+ Add To Cart</button>
+    </div>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="banner-background"></div>
+  <div class="banner-content">
+    <h2 class="banner-title">Get the best deal for Modern Grocery</h2>
+    <button class="shop-now-button">Shop Now ></button>
+  </div>
+</div><br>
+<!--Popular Sales-->
+<!-- popular-sales.component.html -->
+<div class="popular-sales-container">
+  <div class="popular-sales-header">
+    <h2>Popular Sales</h2>
+    <a href="#" class="popular-sales-view-all">View All</a>
+  </div>
+
+  <div class="popular-sales-grid">
+    <div class="popular-sales-item" *ngFor="let product of new_arrivals">
+      <img [src]="product.image" [alt]="product.name">
+      <div class="popular-sales-info">
+        <h3>{{ product.name }}</h3>
+        <p>
+          <span class="popular-sales-original-price">${{ product.original_price }}</span>
+          <span class="popular-sales-sale-price">${{ product.sale_price }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+<br><br><br><br><br>
+
+
+
+
+<div *ngIf="isLoading" class="loading-indicator">Loading...</div>
+
 <app-footer></app-footer>

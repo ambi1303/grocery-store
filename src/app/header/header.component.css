@@ -1,113 +1,203 @@
+/* header.component.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 header {
-    font-family: Arial, sans-serif;
-  }
-  
-  .top-bar {
-    background: #f5f5f5;
-    padding: 10px 0;
-  }
-  
-  .top-bar .container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .top-left a {
-    margin-right: 15px;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  .top-right span {
-    margin-left: 15px;
-    color: #333;
-  }
-  
-  .main-header {
-    background: white;
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .main-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo img {
-    height: 40px;
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-  }
-  
-  .search-bar input {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-right: 10px;
-  }
-  
-  .search-bar select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-right: 10px;
-  }
-  
-  .search-bar button {
-    padding: 10px 20px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-  
-  .icons i {
-    margin: 0 10px;
-    cursor: pointer;
-  }
-  
-  .seller-login button {
-    background: #ffc107;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .nav-bar {
-    background: #28a745;
-  }
-  
-  .nav-bar .container {
-    display: flex;
-    align-items: center;
-  }
-  
-  .categories button {
-    background: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-  }
-  
-  .nav-links {
-    display: flex;
-    list-style: none;
-    margin-left: 20px;
-  }
-  
-  .nav-links li {
-    margin-right: 15px;
-  }
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none
-  }
+  background-color: #fff;
+}
+
+.top-bar {
+  background-color: #f8f8f8;
+  padding: 10px 0;
+}
+
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-left a,
+.top-right span {
+  margin-right: 20px;
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.top-right span i {
+  margin-right: 5px;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.main-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.search-bar input[type="text"] {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  flex-grow: 1;
+}
+
+.search-bar select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-left: 0;
+  border-radius: 0;
+}
+
+.search-bar button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #28a745;
+  color: #fff;
+  border: 1px solid #28a745;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icons i {
+  font-size: 20px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.icons i span {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.nav-bar {
+  background-color: #28a745;
+  padding: 10px 0;
+}
+
+.nav-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categories {
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background-color: #fff;
+  color: #333;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.dropbtn i {
+  margin: 0 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  width: 200px;
+}
+
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content i {
+  margin-right: 10px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-right: 20px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.seller-login button {
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #ffc107;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

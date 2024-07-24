@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, Query, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
@@ -151,9 +151,10 @@ async def register(user: User):
     return {"msg": "User registered successfully"}
 
 @app.get("/api/products", response_model=List[Product])
-async def get_products():
+async def get_products(page: int = Query(0), limit: int = Query(10)):
+    offset = page * limit
     conn = get_db_connection()
-    products = conn.execute('SELECT * FROM products').fetchall()
+    products = conn.execute('SELECT * FROM products LIMIT ? OFFSET ?', (limit, offset)).fetchall()
     conn.close()
     return [dict(ix) for ix in products]
 
