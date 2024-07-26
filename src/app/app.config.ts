@@ -3,7 +3,14 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient,withFetch } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideCacheableAnimationLoader, provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideHttpClient(withFetch()),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration()]
+  providers: [provideHttpClient(withFetch()),provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(), provideAnimationsAsync(),
+    provideLottieOptions({player:()=>player}),
+    provideCacheableAnimationLoader()
+
+  ]
 };

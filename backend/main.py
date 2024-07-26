@@ -8,24 +8,23 @@ from typing import List, Optional
 from datetime import datetime, timedelta
 import sqlite3
 
-# to get a string like this run:
-# openssl rand -hex 32
+# Security constants
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 app = FastAPI()
 
-# CORS
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # Allows all origins
+    allow_origins=["http://localhost:4200", "http://localhost"],
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Password Hashing
+# Password hashing
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -40,6 +39,7 @@ def init_db():
     conn = get_db_connection()
     conn.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT UNIQUE, password TEXT)')
     conn.execute('CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, price REAL, description TEXT)')
+    conn.execute('CREATE TABLE IF NOT EXISTS cart_items (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, product_id INTEGER, quantity INTEGER)')
     conn.close()
 
 init_db()
@@ -68,6 +68,13 @@ class Product(BaseModel):
 
 class Order(BaseModel):
     items: List[int]
+
+class CartItem(BaseModel):
+    product_id: int
+    quantity: int
+
+class Cart(BaseModel):
+    items: List[CartItem]
 
 # Authentication functions
 def verify_password(plain_password, hashed_password):
@@ -113,7 +120,8 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         if email is None:
             raise credentials_exception
         token_data = TokenData(email=email)
-    except JWTError:
+    except JWTError as e:
+        print(f"JWT ERROR: {str(e)}")
         raise credentials_exception
     user = get_user(email=token_data.email)
     if user is None:
@@ -151,8 +159,8 @@ async def register(user: User):
     return {"msg": "User registered successfully"}
 
 @app.get("/api/products", response_model=List[Product])
-async def get_products(page: int = Query(0), limit: int = Query(10)):
-    offset = page * limit
+async def get_products(page: int = Query(1, ge=1), limit: int = Query(10, ge=1, le=100)):
+    offset = (page - 1) * limit
     conn = get_db_connection()
     products = conn.execute('SELECT * FROM products LIMIT ? OFFSET ?', (limit, offset)).fetchall()
     conn.close()
@@ -204,6 +212,72 @@ async def delete_product(product_id: int, current_user: User = Depends(get_curre
 async def create_order(order: Order, current_user: User = Depends(get_current_user)):
     # Here you would typically save the order to a database
     # For simplicity, we're just returning a success message
+    return {"msg": "Order placed successfully"}
+
+@app.options("/api/cart")
+async def options_cart():
+    return {"Allow": "GET, POST, DELETE, OPTIONS"}
+
+@app.post("/api/cart", status_code=status.HTTP_201_CREATED)
+async def create_or_update_cart(cart: Cart, current_user: User = Depends(get_current_user)):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        # Delete existing cart items for the user
+        cursor.execute('DELETE FROM cart_items WHERE user_id=?', (current_user.id,))
+
+        # Insert new cart items
+        for item in cart.items:
+            cursor.execute('INSERT INTO cart_items (user_id, product_id, quantity) VALUES (?, ?, ?)',
+                           (current_user.id, item.product_id, item.quantity))
+
+        conn.commit()
+    except sqlite3.Error as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+    finally:
+        conn.close()
+    return {"msg": "Cart updated successfully"}
+
+@app.get("/api/cart", response_model=Cart)
+async def get_cart(current_user: User = Depends(get_current_user)):
+    print(f"User attempting to access cart: {current_user.email}")
+    conn = get_db_connection()
+    try:
+        cursor = conn.cursor()
+        items = cursor.execute('SELECT product_id, quantity FROM cart_items WHERE user_id=?', (current_user.id,)).fetchall()
+        return Cart(items=[CartItem(product_id=item['product_id'], quantity=item['quantity']) for item in items])
+    except sqlite3.Error as e:
+        print(f"Database error: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+    finally:
+        conn.close()
+
+@app.delete("/api/cart", status_code=status.HTTP_204_NO_CONTENT)
+async def clear_cart(current_user: User = Depends(get_current_user)):
+    conn = get_db_connection()
+    try:
+        conn.execute('DELETE FROM cart_items WHERE user_id=?', (current_user.id,))
+        conn.commit()
+    except sqlite3.Error as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+    finally:
+        conn.close()
+
+@app.post("/api/checkout", status_code=status.HTTP_201_CREATED)
+async def checkout(current_user: User = Depends(get_current_user)):
+    conn = get_db_connection()
+    try:
+        # Here you would typically process the order
+        # For simplicity, we're just clearing the cart
+        conn.execute('DELETE FROM cart_items WHERE user_id = ?', (current_user.id,))
+        conn.commit()
+    except sqlite3.Error as e:
+        conn.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+    finally:
+        conn.close()
     return {"msg": "Order placed successfully"}
 
 if __name__ == "__main__":

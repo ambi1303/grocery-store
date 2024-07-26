@@ -1,0 +1,98 @@
+/* General styles for the popup form */
+.popup-form {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+  }
+  
+  .popup-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup-form label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .popup-form input,
+  .popup-form textarea {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .popup-form button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .popup-form button[type="button"] {
+    background-color: #dc3545;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  /* Styles for the table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table thead {
+    background-color: #f9f9f9;
+  }
+  
+  table thead th {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  table tbody tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  table tbody td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  table tbody td button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  table tbody td button.delete-btn {
+    color: #dc3545;
+  }
+  
+  table tbody td button.chat-btn {
+    color: #28a745;
+  }
+  
+  table tbody td:first-child {
+    font-weight: bold;
+  }
+  

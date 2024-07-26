@@ -1,0 +1,50 @@
+<div>
+    <button id="addNewSupportBtn" (click)="toggleFormPopup()">Add New Ticket</button>
+  
+    <div id="formPopup" *ngIf="isFormPopupVisible" class="popup-form">
+      <form id="supportForm" (submit)="addSupport()">
+        <label for="firstName">First Name*</label>
+        <input id="firstName" [(ngModel)]="newSupport.firstName" name="firstName" required />
+  
+        <label for="email">Email Address*</label>
+        <input id="email" [(ngModel)]="newSupport.email" name="email" type="email" required />
+  
+        <label for="phoneNumber">Phone Number*</label>
+        <input id="phoneNumber" [(ngModel)]="newSupport.phoneNumber" name="phoneNumber" required />
+  
+        <label for="description">Description*</label>
+        <textarea id="description" [(ngModel)]="newSupport.description" name="description" required></textarea>
+  
+        <button type="submit">Add Ticket Now</button>
+        <button type="button" id="closePopup" (click)="toggleFormPopup()">Close</button>
+      </form>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Time</th>
+          <th>First Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="supportTableBody">
+        <tr *ngFor="let support of supports">
+          <td>#{{ support.id }}</td>
+          <td>{{ support.time }}</td>
+          <td>{{ support.firstName }}</td>
+          <td>{{ support.email }}</td>
+          <td>{{ support.phoneNumber }}</td>
+          <td>{{ support.description }}</td>
+          <td>
+            <button class="btn btn-sm btn-danger delete-btn" (click)="deleteSupport(support.id)">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ShoppingCartComponent } from './shopping-cart.component';
+import { PaymentComponent } from '../payment/payment.component';
  const routes: Routes = [
-  { path: '', component: ShoppingCartComponent }
+  { path: '', component: ShoppingCartComponent },
+  {path:'payment',component:PaymentComponent}
 ];
 
 @NgModule({

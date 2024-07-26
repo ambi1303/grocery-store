@@ -13,6 +13,13 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 // import { CheckoutComponent } from './checkout/checkout.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { provideHttpClient,withFetch } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import player from 'lottie-web';
+import { provideCacheableAnimationLoader, provideLottieOptions } from 'ngx-lottie';
+
+export function playerFactory(){
+    return player;
+}
 @NgModule({
     declarations: [],
     imports: [
@@ -21,9 +28,12 @@ import { provideHttpClient,withFetch } from '@angular/common/http';
         HttpClientModule,
         FormsModule,
         AppComponent,ProductListComponent,ProductDetailComponent,ShoppingCartComponent,
-        LoginComponent,RegisterComponent
+        LoginComponent,RegisterComponent,MatSnackBarModule
     ],
-    providers:[provideHttpClient(withFetch())],
+    providers:[provideHttpClient(withFetch()),
+        provideLottieOptions({ player: () => player }),
+    provideCacheableAnimationLoader()
+    ],
     bootstrap: []
 })
 export class AppModule { }

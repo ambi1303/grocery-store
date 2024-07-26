@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { EventEmitter } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class AuthService {
   private loginUrl='http://localhost:8000/token';
   private currentUserSubject:BehaviorSubject<any>;
   public currentUser:Observable<any>;
+  public loginEvent=new EventEmitter<void>();
 
   constructor(
     private http: HttpClient,
@@ -40,7 +42,8 @@ export class AuthService {
       if(isPlatformBrowser(this.platformId)){
         localStorage.setItem('currentUser',JSON.stringify(user));
       }
-      console.log("Login Successful");
+      this.loginEvent.emit();
+      console.log("Login Successful",user);
       this.currentUserSubject.next(user);
       return user;
     }));
@@ -59,6 +62,32 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.currentUserSubject.value.access_token;
+    return !!this.getCurrentUser()?.access_token;
+  }
+  getAccessToken():string |null{
+    const currentUser=this.getCurrentUser();
+    return currentUser?.access_token || null;
+  }
+  refreshToken(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/token/refresh`, {}).pipe(
+      map(user => {
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem('currentUser', JSON.stringify(user));
+        }
+        this.currentUserSubject.next(user);
+        return user;
+      })
+    );
+  }
+  isTokenExpired(): boolean {
+    const user = this.getCurrentUser();
+    if (!user || !user.access_token) return true;
+    
+    const jwtData = user.access_token.split('.')[1];
+    const decodedJwtJsonData = window.atob(jwtData);
+    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    
+    const expirationMs = decodedJwtData.exp * 1000;
+    return Date.now() >= expirationMs;
   }
 }

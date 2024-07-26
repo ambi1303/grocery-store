@@ -6,6 +6,7 @@
         <a href="#">Account</a>
         <a href="#">Track Order</a>
         <a href="#">Support</a>
+        <button (click)="logout()">LOGOUT</button>
       </div>
       <div class="top-right">
         <span><i class="fas fa-phone-alt"></i> + 00645 4568</span>
@@ -28,7 +29,7 @@
       <div class="icons">
         <i class="fas fa-sync-alt"><span>0</span></i>
         <i class="fas fa-heart"><span>0</span></i>
-        <i class="fas fa-shopping-bag"><span>0</span></i>
+       <button routerLink="/cart"> <i class="fas fa-shopping-bag"><span>0</span></i></button>
         <i class="fas fa-user"></i>
       </div>
     </div>
@@ -57,12 +58,12 @@
         </div>
       </div>
       <ul class="nav-links">
-        <li><a href="#">Home</a></li>
+        <li><a routerLink="/products">Home</a></li>
         <li><a href="#">Shop +</a></li>
         <li><a href="#">Pages +</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Blog</a></li>
-        <li><a href="#">User Dashboard</a></li>
+        <li><a routerLink="/profile">User Dashboard</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
       <div class="seller-login">

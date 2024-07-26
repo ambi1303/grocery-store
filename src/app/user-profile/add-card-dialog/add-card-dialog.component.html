@@ -1,0 +1,28 @@
+      <h2 mat-dialog-title>Add New Card <button class="close-button" (click)="dialogRef.close()">×</button></h2>
+      <mat-dialog-content>
+        <form (ngSubmit)="onSubmit()">
+          <mat-form-field>
+            <mat-label>Card Number*</mat-label>
+            <input matInput placeholder="*** *** ***" [(ngModel)]="card.number" name="number" required>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Card Holder Name*</mat-label>
+            <input matInput placeholder="Demo Name" [(ngModel)]="card.name" name="name" required>
+          </mat-form-field>
+          <div class="form-row">
+            <mat-form-field>
+              <mat-label>Expiry Date*</mat-label>
+              <input matInput [matDatepicker]="picker" placeholder="dd-mm-yyyy" [(ngModel)]="card.expiryDate" name="expiryDate" required>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>CVV*</mat-label>
+              <input matInput placeholder="21232" [(ngModel)]="card.cvv" name="cvv" required>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button color="primary" type="submit">Add Card</button>
+        </form>
+      </mat-dialog-content>
+
+ 

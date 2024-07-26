@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { error } from 'console';
 import { trigger,state,style,transition,animate,keyframes } from '@angular/animations';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,7 @@ import { trigger,state,style,transition,animate,keyframes } from '@angular/anima
        ]
 })
 
-export class LoginComponent {
+export class LoginComponent  {
 
   email: string = '';
   password: string = '';
@@ -45,12 +46,16 @@ export class LoginComponent {
   passwordVisible: boolean = false;
 
 
-  constructor(private authService: AuthService,private router:Router) { }
+  constructor(private authService: AuthService,private router:Router,
+    private cartService:CartService
+  ) { }
 
  onSubmit(){
   this.authService.login(this.email,this.password).subscribe(
     ()=>{
+      this.cartService.loadCart();
       this.router.navigate(['/products']);
+    
     },
     (error)=>{
       console.error('Invalid email or password',error);
@@ -68,55 +73,5 @@ export class LoginComponent {
     passwordField.type = 'password';
   }
 }
- }
-//  import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 
-//  @Component({
-//    selector: 'app-login',
-//    templateUrl: './login.component.html',
-//    styleUrls: ['./login.component.css'],
-//    animations: [
-//      trigger('fadeIn', [
-//        state('void', style({ opacity: 0 })),
-//        transition(':enter', [
-//          animate('500ms ease-in', style({ opacity: 1 }))
-//        ])
-//      ]),
-//      trigger('shake', [
-//        transition(':enter', [
-//          animate('500ms ease-in', style({ opacity: 1 }))
-//        ]),
-//        transition('* => error', [
-//          animate('300ms', keyframes([
-//            style({ transform: 'translateX(0)', offset: 0 }),
-//            style({ transform: 'translateX(-10px)', offset: 0.2 }),
-//            style({ transform: 'translateX(10px)', offset: 0.4 }),
-//            style({ transform: 'translateX(-10px)', offset: 0.6 }),
-//            style({ transform: 'translateX(10px)', offset: 0.8 }),
-//            style({ transform: 'translateX(0)', offset: 1.0 })
-//          ]))
-//        ])
-//      ])
-//    ]
-//  })
-//  export class LoginComponent {
-//    email: string = '';
-//    password: string = '';
-//    loginState: string = '';
- 
-//    constructor(private authService: AuthService, private router: Router) { }
- 
-//    onSubmit() {
-//      this.authService.login(this.email, this.password).subscribe(
-//        () => {
-//          this.router.navigate(['/products']);
-//        },
-//        error => {
-//          console.error('Invalid email or password', error);
-//          this.loginState = 'error'; // Trigger shake animation on error
-//          setTimeout(() => this.loginState = '', 300); // Reset state after animation
-//        }
-//      );
-//    }
-//  }
- 
+}

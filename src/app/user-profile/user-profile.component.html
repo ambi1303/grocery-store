@@ -1,1 +1,21 @@
-<p>user-profile works!</p>
+<app-header></app-header>
+<div class="user-profile">
+  <div class="content">
+    <nav class="sidebar">
+      <h1>Change Password</h1>
+      <ul>
+        <li *ngFor="let item of menuItems">
+          <a [routerLink]="item.route" routerLinkActive="active">
+            <i class="material-icons">{{item.icon}}</i>
+            {{item.label}}
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+<app-footer></app-footer>

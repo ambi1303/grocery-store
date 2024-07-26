@@ -10,15 +10,13 @@ export class ProductService {
   getFeaturedProducts() {
     throw new Error('Method not implemented.');
   }
-  private apiUrl = 'http://localhost:8000/api/products'; // Update with your backend URL
+  private apiUrl = 'http://localhost:8000/api'; // Update with your backend URL
 
   constructor(private http: HttpClient) { }
 
   getProducts(page: number, limit: number): Observable<Product[]> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('limit', limit.toString());
-    return this.http.get<Product[]>(`${this.apiUrl}/products`, { params });
+    
+    return this.http.get<Product[]>(`${this.apiUrl}/products?page=${page}&limit=${limit}`);
   }
 
   getProduct(id: number): Observable<Product> {

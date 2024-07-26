@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router,RouterModule } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-header',
@@ -16,9 +18,14 @@ export class HeaderComponent {
   email: string = 'Yourremail@gmail.com';
   cartItemCount: number = 0; // Example for future use
 
+  constructor(private router:Router,private authService:AuthService){}
   // Example of a method to handle search (this can be expanded)
   onSearch(searchTerm: string) {
     console.log('Search term:', searchTerm);
     // Implement search logic here
   }
+  logout(){
+    this.authService.logout();
+  }
+ 
 }

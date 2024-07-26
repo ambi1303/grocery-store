@@ -1,0 +1,38 @@
+<!-- payment.component.html -->
+ <app-header></app-header>
+<div class="max-w-md mx-auto p-4 bg-card rounded-lg shadow-md">
+    <h2 class="text-lg font-semibold text-foreground">Payment Details</h2>
+    <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="mt-4">
+      <div class="mb-4">
+        <label for="payment-method" class="block text-sm text-muted-foreground">Payment Method</label>
+        <select id="payment-method" formControlName="paymentMethod" class="mt-1 block w-full border border-border rounded-lg p-2 bg-input text-foreground" required>
+          <option value="" disabled selected>Select a payment method</option>
+          <option value="credit-card">Credit Card</option>
+          <option value="debit-card">Debit Card</option>
+          <option value="pay-later">Pay Later</option>
+          <option value="net-banking">Net Banking</option>
+          <option value="upi">UPI</option>
+        </select>
+      </div>
+      <div class="mb-4">
+        <label for="card-number" class="block text-sm text-muted-foreground">Card Number</label>
+        <input type="text" id="card-number" formControlName="cardNumber" class="mt-1 block w-full border border-border rounded-lg p-2 bg-input text-foreground" placeholder="1234 5678 9012 3456" required />
+      </div>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div>
+          <label for="expiry-date" class="block text-sm text-muted-foreground">Expiry Date</label>
+          <input type="text" id="expiry-date" formControlName="expiryDate" class="mt-1 block w-full border border-border rounded-lg p-2 bg-input text-foreground" placeholder="MM/YY" required />
+        </div>
+        <div>
+          <label for="cvv" class="block text-sm text-muted-foreground">CVV</label>
+          <input type="text" id="cvv" formControlName="cvv" class="mt-1 block w-full border border-border rounded-lg p-2 bg-input text-foreground" placeholder="123" required />
+        </div>
+      </div>
+      <button type="submit" [disabled]="paymentForm.invalid" class="w-full bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded-lg">Pay Now</button>
+    </form>
+    <p class="mt-4 text-sm text-muted-foreground" *ngIf="!paymentSuccessful">Your payment is secure and encrypted.</p>
+
+    <!-- Payment Successful Animation -->
+    <div #lottieContainer *ngIf="paymentSuccessful" style="width: 300px; height: 300px; margin: 0 auto;"></div>
+  </div>
+<app-footer></app-footer>

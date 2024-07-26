@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent {
+placeOrder() {
+throw new Error('Method not implemented.');
+}
   cartItems: any[] = [];
   total: number = 0;
 
@@ -19,20 +22,9 @@ export class CheckoutComponent {
     private cartService: CartService,
     private orderService: OrderService
   ) {
-    this.cartItems = this.cartService.getItems();
-    this.total = this.cartService.getTotal();
+    // this.cartItems = this.cartService.getItems();
+    // this.total = this.cartService.getTotal();
   }
 
-//   placeOrder() {
-//     this.orderService.createOrder(this.cartItems).subscribe(
-//       response => {
-//         console.log('Order placed successfully');
-//         this.cartService.clearCart();
-//         // Redirect to order confirmation page
-//       },
-//       error => {
-//         console.error('Error placing order', error);
-//       }
-//     );
-//   }
+
 }

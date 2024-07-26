@@ -6,6 +6,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AuthGuard } from './auth.guard';
+import { PaymentComponent } from './payment/payment.component';
 
 
 export const routes: Routes = [
@@ -27,8 +28,10 @@ export const routes: Routes = [
   },
   { 
     path: 'profile', 
-    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfileModule) 
+    loadChildren: () => import('./user-profile/user-profile.module').then(m => m.UserProfileModule),
+    
   },
+  {path:'payment',component:PaymentComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', redirectTo: '/login' }
 ];

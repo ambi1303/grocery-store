@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
+import { CartService } from '../services/cart.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-list',
@@ -137,7 +139,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
   limit: number = 10;
   isLoading: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService:CartService,
+    private snackBar:MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -214,6 +220,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   addToCart(product: Product): void {
+    this.cartService.addToCart(product);
+    this.showNotification();
     console.log('Add to cart clicked for product:', product);
+  
   }
+  showNotification(){
+    this.snackBar.open('Successfully Added To Cart ', 'Close', {
+      duration: 3000,  // Duration in milliseconds
+    });
+  }
+  
 }

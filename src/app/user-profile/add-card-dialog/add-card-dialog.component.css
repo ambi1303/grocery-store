@@ -1,0 +1,81 @@
+/* Add this to your component's CSS file or a global styles file */
+
+.mat-dialog-container {
+    padding: 0 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+  }
+  
+  .mat-dialog-title {
+    background-color: white;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px;
+    margin: 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .mat-dialog-content {
+    padding: 20px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .mat-form-field-label {
+    color: #666;
+  }
+  
+  .mat-input-element {
+    font-size: 16px;
+  }
+  
+  button[mat-raised-button] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button[mat-raised-button]:hover {
+    background-color: #45a049;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  /* For the date picker icon */
+  .mat-datepicker-toggle {
+    color: #666;
+  }
+  
+  /* For the CVV field to be side-by-side with Expiry Date */
+  .form-row {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .form-row .mat-form-field {
+    flex: 1;
+  }

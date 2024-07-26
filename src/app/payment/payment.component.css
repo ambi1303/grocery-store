@@ -1,0 +1,89 @@
+/* payment.component.css */
+:host {
+    display: block;
+    font-family: Arial, sans-serif;
+  }
+  
+  .bg-card {
+    background-color: #ffffff;
+  }
+  
+  .text-foreground {
+    color: #333333;
+  }
+  
+  .text-muted-foreground {
+    color: #666666;
+  }
+  
+  .bg-input {
+    background-color: #f9f9f9;
+  }
+  
+  .border-border {
+    border-color: #e0e0e0;
+  }
+  
+  .bg-primary {
+    background-color: #3f51b5;
+  }
+  
+  .text-primary-foreground {
+    color: #ffffff;
+  }
+  
+  .bg-primary:hover {
+    background-color: #303f9f;
+  }
+  
+  input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
+    border-color: #ff0000;
+  }
+  
+  button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  /* payment.component.css */
+.container {
+  text-align: center;
+}
+.progress-bar {
+  position: relative;
+  width: 300px;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px auto;
+}
+.progress {
+  width: 0;
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 10px 0 0 10px;
+  transition: width 2s ease;
+}
+.checkmark {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  color: #4caf50;
+  opacity: 0;
+  transition: opacity 0.5s ease 2s;
+}
+.message {
+  font-size: 1.2em;
+  color: #333;
+  opacity: 0;
+  transition: opacity 0.5s ease 2s;
+}
+.progress.loaded {
+  width: 100%;
+}
+.checkmark.loaded,
+.message.loaded {
+  opacity: 1;
+}

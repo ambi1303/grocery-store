@@ -1,0 +1,27 @@
+.modal-backdrop {
+    opacity: 0.5;
+  }
+  
+  .modal {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-dialog {
+    margin-top: 10vh;
+  }
+  
+  .close {
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+  }
+  
+  .btn-success {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+  }
+  
+  .btn-success:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+  }
