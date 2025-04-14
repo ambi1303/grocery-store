@@ -13,12 +13,11 @@ const routes: Routes = [
   { 
     path: 'register', 
     loadChildren: () => import('./register/register.module').then(m => m.RegisterModule),
-    canActivate: [AuthGuard] 
+     
   },
   { 
     path: 'products', 
     loadChildren: () => import('./product-list/product-list.module').then(m => m.ProductListModule),
-    canActivate: [AuthGuard]
   },
   { path: 'products/:id', component: ProductDetailComponent },
   { 
@@ -31,7 +30,7 @@ const routes: Routes = [
   },
   {path:'payment',component:PaymentComponent},
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }
+  { path: '**', redirectTo: '/profile' }
 ];
 
 @NgModule({
