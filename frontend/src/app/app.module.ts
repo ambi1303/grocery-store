@@ -10,13 +10,11 @@ import { RegisterComponent } from './register/register.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-// import { CheckoutComponent } from './checkout/checkout.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { provideHttpClient,withFetch } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import player from 'lottie-web';
 import { provideCacheableAnimationLoader, provideLottieOptions } from 'ngx-lottie';
-
+import player from 'lottie-web';
 export function playerFactory(){
     return player;
 }
